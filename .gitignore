@@ -1,0 +1,24 @@
+# Claude Code local settings (machine-specific, not shared)
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backend (.NET)
+backend/bin/
+backend/obj/
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+backend.Tests/bin/
+backend.Tests/obj/
+
+# Frontend (Vite/Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Frontend compilato dentro il backend alla pubblicazione
+backend/wwwroot/

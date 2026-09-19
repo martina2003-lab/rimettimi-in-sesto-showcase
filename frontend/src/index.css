@@ -1,0 +1,407 @@
+@import "tailwindcss";
+
+/* Identità visiva "carta calda, inchiostro freddo" — stessi token dei mockup HTML
+   (mockup/admin.html, mockup/coordinatrice.html, ecc.), portati qui come fonte unica
+   da cui i componenti React leggono i colori invece di duplicarli. */
+:root {
+  --bg: #f6f1e8;
+  --surface: #ffffff;
+  --surface-2: #efe8dd;
+  --ink: #1c2733;
+  --muted: #5b6470;
+  --accent: #2f5fa8;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3ebf6;
+  --accent-deep: #1e3a63;
+  --good: #2f8f5b;
+  --good-soft: #e2f2e9;
+  --warm: #c97d06;
+  --warm-soft: #faf0dc;
+  --danger: #b3432b;
+  --danger-soft: #f8e6e1;
+  --border: #e9e3d9;
+  --card-border: transparent;
+  --shadow-sm: 0 1px 2px rgba(60, 50, 40, 0.04);
+  --shadow-md: 0 2px 4px rgba(60, 50, 40, 0.04), 0 8px 24px rgba(60, 50, 40, 0.06);
+  --shadow-lg: 0 4px 8px rgba(60, 50, 40, 0.05), 0 16px 40px rgba(60, 50, 40, 0.1);
+  --transition: 150ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #181614;
+    --surface: #211e1b;
+    --surface-2: #292521;
+    --ink: #f2ede5;
+    --muted: #a49c92;
+    --accent: #6f9fdc;
+    --accent-ink: #0d1420;
+    --accent-soft: #223349;
+    --accent-deep: #2b4a7a;
+    --good: #5fbf8c;
+    --good-soft: #1f3327;
+    --warm: #e3a53f;
+    --warm-soft: #3a2e18;
+    --danger: #e2836a;
+    --danger-soft: #3a2420;
+    --border: #37312b;
+    --card-border: #37312b;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #181614;
+  --surface: #211e1b;
+  --surface-2: #292521;
+  --ink: #f2ede5;
+  --muted: #a49c92;
+  --accent: #6f9fdc;
+  --accent-ink: #0d1420;
+  --accent-soft: #223349;
+  --accent-deep: #2b4a7a;
+  --good: #5fbf8c;
+  --good-soft: #1f3327;
+  --warm: #e3a53f;
+  --warm-soft: #3a2e18;
+  --danger: #e2836a;
+  --danger-soft: #3a2420;
+  --border: #37312b;
+  --card-border: #37312b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Karla", sans-serif;
+  line-height: 1.45;
+}
+
+h1, h2, h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+/* ---------------------------------------------------------------------------
+   Classi di componente prese dai mockup HTML, che restano la specifica visiva.
+   Portarle qui una volta sola evita di riscrivere lo stesso stile in utility
+   Tailwind schermata per schermata, e soprattutto evita che il portato React
+   diverga lentamente dai mockup su cui le decisioni di design sono state prese.
+   --------------------------------------------------------------------------- */
+
+a { color: inherit; }
+[hidden] { display: none !important; }
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  width: 100%;
+}
+
+label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.field { margin-bottom: 1rem; }
+
+.btn {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform var(--transition), box-shadow var(--transition),
+    background-color var(--transition), border-color var(--transition);
+}
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
+.btn-primary:active:not(:disabled) { transform: translateY(0); box-shadow: var(--shadow-sm); }
+.btn-ghost { background: transparent; border-color: var(--border); color: var(--ink); }
+.btn-ghost:hover:not(:disabled) { background: var(--surface-2); border-color: var(--muted); }
+.btn-danger { background: var(--danger-soft); color: var(--danger); }
+.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.78rem; }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.25rem 1.4rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* Il titolo di sezione nel serif: è la "voce" della pagina. */
+.view-title {
+  font-family: 'Petrona', serif;
+  font-weight: 600;
+  font-size: 1.9rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.view-sub { color: var(--muted); font-size: 0.88rem; margin-top: 0.25rem; }
+
+/* Etichette in maiuscoletto spaziato: la "struttura", in Montserrat. */
+.eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Stati con puntino colorato invece di pastiglie piene: in una schermata densa
+   il colore serve a scandagliare, non a gridare (vedi ARCHITETTURA.md). */
+.stato { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 600; }
+.stato::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: currentColor; }
+.stato-confermato { color: var(--good); }
+.stato-richiesto { color: var(--warm); }
+.stato-annullato { color: var(--danger); }
+.stato-neutro { color: var(--muted); }
+
+.mono { font-family: 'IBM Plex Mono', monospace; }
+
+.app-shell { display: flex; min-height: 100svh; }
+.sidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1rem;
+  z-index: 15;
+}
+/* Il riquadro bianco serviva al vecchio PNG, che aveva il fondo bianco cotto dentro.
+   Il marchio ora è un SVG con sfondo trasparente e angoli suoi. */
+.brand-logo {
+  height: 2.1rem;
+  width: auto;
+  display: block;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.7rem 0.6rem;
+  border-radius: 9px;
+  color: var(--muted);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition), color var(--transition);
+}
+.nav-item:hover { background: var(--surface-2); color: var(--ink); }
+.nav-item.attivo, .nav-item.attivo:hover { background: var(--accent-soft); color: var(--accent); }
+.nav-item i { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+
+/* Stesso stile di .nav-item, ma per righe di un menu a comparsa (es. lo switcher di
+   profilo in LayoutRuolo) che deve restare leggibile anche a sidebar collassata: la regola
+   sotto i 900px nasconde ".nav-item span" perché lì il testo va in un tooltip/icona, ma un
+   popover non è mai compresso in verticale e il suo testo deve restare visibile sempre. */
+.menu-popover-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.7rem 0.6rem;
+  border-radius: 9px;
+  color: var(--muted);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition), color var(--transition);
+}
+.menu-popover-item:hover { background: var(--surface-2); color: var(--ink); }
+.menu-popover-item.attivo, .menu-popover-item.attivo:hover { background: var(--accent-soft); color: var(--accent); }
+
+.main { margin-left: 230px; flex: 1; min-width: 0; padding: 1.8rem 2.2rem 4rem; max-width: 1180px; }
+
+/* Testata + barra in basso: nascoste su desktop, dove la navigazione resta la sidebar fissa
+   sopra. Sotto i 900px si scambiano di posto (vedi la stessa soglia più sotto) — non due
+   layout indipendenti da tenere sincronizzati, solo quale metà è visibile. */
+.mobile-topbar, .bottom-nav { display: none; }
+
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 1.2rem 1rem calc(4.6rem + 1rem); max-width: none; }
+
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3.2rem;
+    padding: 0 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 20;
+  }
+  /* .main aggiunge lo spazio della testata fissa qui, non sopra: la regola sopra vale anche
+     da sola per uno schermo che avesse solo la barra in basso, ma non questo layout. */
+  .main { padding-top: calc(3.2rem + 1.2rem); }
+
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 0.3rem 0.2rem calc(0.3rem + env(safe-area-inset-bottom, 0px));
+    z-index: 20;
+  }
+  .bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.35rem 0.2rem;
+    border-radius: 9px;
+    color: var(--muted);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.64rem;
+    text-decoration: none;
+    transition: background-color var(--transition), color var(--transition);
+  }
+  .bottom-nav-item i { font-size: 1.3rem; line-height: 1; }
+  .bottom-nav-item.attivo { color: var(--accent); }
+}
+
+.avatar {
+  width: 2.1rem; height: 2.1rem;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Petrona', serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Scelta del fisioterapista nel wizard di prenotazione (paziente/Prenota.tsx), portata da
+   mockup/paziente.html: card con avatar, bio sempre visibile, badge abituale/prenota di
+   nuovo, e "Vedi profilo" che apre un piccolo pannello a parte invece di espandersi inline. */
+.option-noPref {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--surface);
+  border: 1.5px dashed var(--border);
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: border-color var(--transition);
+}
+.option-noPref:hover { border-color: var(--muted); }
+.option-noPref .icon-circle {
+  width: 2.4rem; height: 2.4rem;
+  border-radius: 50%;
+  background: var(--surface-2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.option-noPref .icon-circle i { font-size: 1.2rem; color: var(--muted); }
+.option-noPref strong { display: block; font-size: 0.95rem; }
+.option-noPref span.sub { color: var(--muted); font-size: 0.82rem; }
+
+.therapist-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 0.9rem 1.4rem 0.85rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.therapist-select {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: none; border: none; padding: 0; margin: 0;
+  cursor: pointer; text-align: left; width: 100%;
+  color: inherit; font: inherit;
+}
+.therapist-select .avatar { width: 2.8rem; height: 2.8rem; font-size: 1.05rem; }
+.therapist-body { flex: 1; }
+.therapist-top { display: flex; justify-content: space-between; gap: 0.6rem; align-items: flex-start; flex-wrap: wrap; }
+.therapist-name { font-weight: 700; font-size: 0.98rem; margin: 0; }
+/* Troncata a una riga come nel mockup: il testo vero (un paragrafo intero, non una frase
+   sola) resta leggibile per intero nel widget "Vedi profilo", qui basta l'anteprima. */
+.therapist-bio {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--muted); font-size: 0.85rem; margin: 0.35rem 0 0; line-height: 1.5;
+}
+.therapist-viewprofile {
+  display: block; margin: 0.6rem 0 0 3.8rem;
+  background: none; border: none; padding: 0;
+  font-size: 0.8rem; font-weight: 700; color: var(--accent); cursor: pointer;
+}
+
+.badge { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.74rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.badge::before { content: ''; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+.badge-usual { color: var(--accent); }
+.badge-usual::before { background: var(--accent); }
+.badge-again::before { display: none; }
+.badge-again { color: var(--muted); }
+
+.profile-overlay {
+  position: fixed; inset: 0;
+  background: rgba(28, 39, 51, 0.4);
+  display: flex; align-items: flex-end; justify-content: center;
+  z-index: 40;
+}
+.profile-panel {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 1.6rem 1.3rem 1.8rem;
+  width: 100%; max-width: 420px;
+  margin: 2rem;
+  box-shadow: var(--shadow-lg, 0 16px 40px rgba(0,0,0,0.18));
+}
+.profile-panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.1rem; }
+.profile-panel-close { background: none; border: none; color: var(--muted); font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0; }
+.profile-panel-close:hover { color: var(--ink); }
+.profile-panel .avatar { width: 3.4rem; height: 3.4rem; font-size: 1.1rem; margin-bottom: 0.9rem; }
+.profile-panel-name { font-family: 'Petrona', serif; font-weight: 600; font-size: 1.3rem; line-height: 1.25; margin: 0 0 0.9rem; }
+.profile-panel-bio { font-size: 0.9rem; line-height: 1.6; color: var(--ink); margin: 0 0 1.4rem; }

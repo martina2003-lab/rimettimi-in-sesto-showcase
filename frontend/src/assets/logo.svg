@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Rimettimi in sesto">
+  <rect x="2" y="2" width="44" height="44" rx="12" fill="#2f5fa8"/>
+  <path d="M13 17 Q 16 33 24 33 Q 32 33 35 19" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="35.5" cy="13.5" r="3.6" fill="#e3a53f"/>
+</svg>

@@ -1,0 +1,6 @@
+@RimettimiInSesto.Api_HostAddress = http://localhost:5131
+
+GET {{RimettimiInSesto.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

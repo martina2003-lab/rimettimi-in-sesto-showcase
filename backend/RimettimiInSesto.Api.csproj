@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>95f6a3de-f86e-4715-b6f3-86cf2d595eda</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <!--
+    Alla pubblicazione il frontend viene compilato e finisce in wwwroot, così `dotnet publish`
+    produce un artefatto completo da caricare su un solo App Service. Volutamente legato a
+    Publish e non a Build: in sviluppo il frontend gira su Vite e rifarne la build a ogni
+    compilazione del backend rallenterebbe soltanto.
+  -->
+  <Target Name="CompilaFrontend" BeforeTargets="ComputeFilesToPublish">
+    <Message Importance="high" Text="Compilazione del frontend React…" />
+    <Exec Command="npm ci" WorkingDirectory="../frontend" Condition="!Exists('../frontend/node_modules')" />
+    <Exec Command="npm run build" WorkingDirectory="../frontend" />
+  </Target>
+
+  <!--
+    I file compilati finiscono direttamente nella cartella di pubblicazione sotto wwwroot,
+    senza passare da backend/wwwroot: così il sorgente resta pulito e non si rischia di
+    includerli due volte, visto che il Web SDK raccoglie wwwroot per conto suo.
+  -->
+  <Target Name="PubblicaFrontend" AfterTargets="ComputeFilesToPublish">
+    <ItemGroup>
+      <FileFrontend Include="../frontend/dist/**/*" />
+      <ResolvedFileToPublish Include="@(FileFrontend)">
+        <RelativePath>wwwroot/%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>
