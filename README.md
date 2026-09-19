@@ -49,33 +49,18 @@ Questo repository è una versione curata per essere mostrata all'esterno: non co
 
 ASP.NET Core Web API (.NET 8) + React/TypeScript, SQLite (anche in produzione, per scelta: vedi ARCHITETTURA.md), hosting su un unico App Service di Microsoft Azure che serve sia l'API sia l'interfaccia. Dettagli e motivazioni in [ARCHITETTURA.md](ARCHITETTURA.md).
 
-## Come si avvia in locale
+## Sviluppo
 
-Servono il .NET SDK 8 e Node.js. In sviluppo i due pezzi girano separati, quindi **due terminali**.
-
-Il backend, su `http://localhost:5131`:
+.NET SDK 8 + Node.js, due terminali (backend su `:5131`, frontend su `:5173` — quest'ultimo l'indirizzo da aprire):
 
 ```bash
 cd backend && dotnet run
-```
-
-Il frontend, su `http://localhost:5173` — è questo l'indirizzo da aprire nel browser:
-
-```bash
 cd frontend && npm install && npm run dev
 ```
 
-Il database SQLite si crea da solo al primo avvio, con migration e dati demo già dentro. Cancellare `backend/rimettimiinsesto.db` è il modo più rapido per ripartire da dati puliti.
+Il database SQLite si crea da solo al primo avvio, con migration e dati demo già dentro. Nessuna credenziale: si entra scegliendo uno dei quattro ruoli.
 
-Non servono credenziali: la pagina di accesso ha quattro pulsanti, uno per ruolo, che entrano direttamente.
-
-## Come si compila per la pubblicazione
-
-```bash
-cd backend && dotnet publish -c Release
-```
-
-Un comando solo: compila anche il frontend e lo include nell'artefatto, perché in produzione un **unico** servizio serve sia l'API sia l'interfaccia. Per verificare il frontend da solo si usa `npm run build` — non `tsc --noEmit`, che applica regole più permissive e lascia passare errori che poi rompono la pubblicazione.
+Build di produzione: `cd backend && dotnet publish -c Release` (compila anche il frontend e lo include nell'artefatto — un unico servizio serve sia API che interfaccia).
 
 ## Limiti noti
 
