@@ -6,7 +6,7 @@ using Xunit;
 
 namespace RimettimiInSesto.Api.Tests;
 
-// Copre il principio guida non negoziabile di CLAUDE.md: "l'accesso clinico deriva
+// Copre il principio guida non negoziabile del progetto: "l'accesso clinico deriva
 // dall'appuntamento, non da un legame statico" + "l'audit log non è opzionale".
 // È il pezzo più delicato del sistema (dati sanitari, categoria particolare GDPR),
 // merita una verifica automatica invece di fidarsi a vista del codice.

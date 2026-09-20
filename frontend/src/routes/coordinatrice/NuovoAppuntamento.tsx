@@ -52,8 +52,8 @@ export default function NuovoAppuntamento() {
   const [fisioterapistaId, setFisioterapistaId] = useState<number | null>(null)
   const [selezione, setSelezione] = useState<SelezioneSlot | null>(null)
   // Due modi di cercare l'orario: partendo dal fisioterapista (come oggi) o partendo
-  // dall'orario che il paziente ha chiesto al telefono, senza preferenze di terapista
-  // (CLAUDE.md, 15 settembre 2026) — stessa griglia libero/occupato del Calendario.
+  // dall'orario che il paziente ha chiesto al telefono, senza preferenze di terapista —
+  // stessa griglia libero/occupato del Calendario.
   const [cercaPer, setCercaPer] = useState<'fisioterapista' | 'orario'>('fisioterapista')
 
   const [errore, setErrore] = useState<string | null>(null)

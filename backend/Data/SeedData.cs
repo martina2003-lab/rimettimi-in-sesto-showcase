@@ -5,8 +5,8 @@ using RimettimiInSesto.Api.Models;
 namespace RimettimiInSesto.Api.Data;
 
 // Dati demo precaricati invece di un flusso di registrazione multi-utente — vedi
-// ARCHITETTURA.md, "Note per il deploy demo". Nomi, date e stati sono ripresi da
-// mockup/coordinatrice.html, presa come fonte di verità tra i quattro mockup (vedi CLAUDE.md).
+// ARCHITETTURA.md, "Note per il deploy demo". Nomi, date e stati raccontano la stessa
+// storia coerente su tutti e quattro i ruoli, non generati a caso.
 // Idempotente: non fa nulla se esiste già almeno un utente.
 public static class SeedData
 {
@@ -70,7 +70,7 @@ public static class SeedData
             }
         }
 
-        // ---------- Utenti con login (i quattro account demo di mockup/login.html) ----------
+        // ---------- Utenti con login (i quattro account demo, uno per ruolo) ----------
         var francesca = await CreaUtente(userManager, "francesca@studio.example", "Francesca", "", Ruolo.Coordinatrice);
         var fabrizio = await CreaUtente(userManager, "fabrizio.rinaldi@studio.example", "Fabrizio", "Rinaldi", Ruolo.Admin);
         var elenaUtente = await CreaUtente(userManager, "elena.ricci@studio.example", "Elena", "Ricci", Ruolo.Fisioterapista);

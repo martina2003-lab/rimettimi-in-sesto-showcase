@@ -430,9 +430,8 @@ export default function Andamento() {
 
           <section className="mt-4">
             <h2 className="eyebrow mb-3">Il dettaglio, periodo per periodo</h2>
-            {/* "table-wrap" non è una classe reale: esiste nel CSS dei mockup ma non è mai
-                stata portata in index.css insieme a .card/.btn/... (vedi CLAUDE.md) — la
-                tabella restava testo nudo sull'avorio della pagina, mentre tutto il resto
+            {/* "table-wrap" non è una classe reale in questo progetto — la tabella restava
+                testo nudo sull'avorio della pagina, mentre tutto il resto
                 della vista sta dentro una .card bianca con ombra. Stessa classe usata da KPI
                 e grafico qui sopra, non una nuova: altrimenti sarebbe un terzo linguaggio
                 visivo sulla stessa pagina. Il padding di .card è azzerato perché la tabella

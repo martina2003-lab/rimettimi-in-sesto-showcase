@@ -7,8 +7,8 @@ namespace RimettimiInSesto.Api.Services;
 
 public class BookingValidationException(string messaggio) : Exception(messaggio);
 
-// Nessuna prenotazione si auto-conferma, e ogni richiesta blocca il suo slot (principio
-// guida di CLAUDE.md). Unica eccezione: le prenotazioni create dalla Coordinatrice stessa
+// Nessuna prenotazione si auto-conferma, e ogni richiesta blocca il suo slot.
+// Unica eccezione: le prenotazioni create dalla Coordinatrice stessa
 // (telefono/sportello), che nascono già "Confermato" — è lei stessa il confermatore.
 public class BookingService(ApplicationDbContext db, AvailabilityService availabilityService, NotificaService notificaService)
 {
@@ -159,8 +159,7 @@ public class BookingService(ApplicationDbContext db, AvailabilityService availab
     // --- Modifica e cancellazione lato Paziente -------------------------------------
 
     // Chiedere lo spostamento NON fa perdere lo slot già confermato: l'appuntamento resta
-    // dov'è e la nuova data resta "richiesta" finché la segreteria non approva
-    // (comportamento già deciso in mockup/paziente.html).
+    // dov'è e la nuova data resta "richiesta" finché la segreteria non approva.
     public async Task<Appuntamento> RichiediModificaAsync(string utenteId, int appuntamentoId, DateTime nuovaDataOra)
     {
         var appuntamento = await CaricaAppuntamentoDelPazienteAsync(utenteId, appuntamentoId);

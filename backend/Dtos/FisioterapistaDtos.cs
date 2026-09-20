@@ -2,10 +2,9 @@ using RimettimiInSesto.Api.Models;
 
 namespace RimettimiInSesto.Api.Dtos;
 
-// I pazienti a cui questo fisioterapista può accedere. La divisione in due gruppi è la
-// stessa del mockup, ma qui non è un'etichetta scritta a mano: "abituale" è **calcolato**
-// dallo storico appuntamenti, cioè esattamente il valore che il progetto dice di non
-// memorizzare mai come legame fisso (principio guida di CLAUDE.md).
+// I pazienti a cui questo fisioterapista può accedere, divisi in due gruppi — ma qui non
+// è un'etichetta scritta a mano: "abituale" è **calcolato** dallo storico appuntamenti,
+// cioè esattamente il valore che il progetto dice di non memorizzare mai come legame fisso.
 public record PazienteDelFisioterapistaDto(
     int Id, string Nome, string Cognome,
     bool Abituale,

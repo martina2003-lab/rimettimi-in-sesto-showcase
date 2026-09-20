@@ -18,11 +18,11 @@ public record GiornoLiberoOccupato(DateOnly Giorno, List<SlotLiberoOccupato> Slo
 // Calcola SOLO quando lo studio è libero per un fisioterapista in un giorno — un fatto
 // della giornata, stabile fra le durate. La scelta di "quanti slot da 30 min servono e da
 // dove si aggancia la seduta" resta client-side, esattamente come deciso il 9 settembre 2026
-// per la griglia settimanale di paziente.html (vedi CLAUDE.md): qui non si ragiona per durata.
+// per la griglia settimanale del Paziente: qui non si ragiona per durata.
 //
-// Occupato = appuntamento Richiesto o Confermato (una richiesta blocca lo slot dall'invio —
-// principio guida di CLAUDE.md, altrimenti la conferma manuale diventerebbe una corsa tra
-// pazienti sullo stesso slot) + slot inclusi in una proposta alternativa ancora aperta.
+// Occupato = appuntamento Richiesto o Confermato (una richiesta blocca lo slot dall'invio,
+// altrimenti la conferma manuale diventerebbe una corsa tra pazienti sullo stesso slot)
+// + slot inclusi in una proposta alternativa ancora aperta.
 public class AvailabilityService(ApplicationDbContext db)
 {
     private static readonly DayOfWeek[] GiorniApertura =
@@ -224,7 +224,7 @@ public class AvailabilityService(ApplicationDbContext db)
             .Select(m => (Inizio: m.Nuova, Fine: m.Nuova.AddMinutes(m.DurataMinuti))));
 
         // Slot inclusi in una proposta alternativa ancora aperta: restano bloccati finché
-        // il paziente non risponde o la proposta scade (principio guida di CLAUDE.md).
+        // il paziente non risponde o la proposta scade.
         var proposteAperte = await db.ProposteSlotAlternativo
             .Include(p => p.Appuntamento)
             .Where(p => p.Esito == EsitoPropostaSlot.InAttesa && p.Appuntamento.FisioterapistaId == fisioterapistaId)

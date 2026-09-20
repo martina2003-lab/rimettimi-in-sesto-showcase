@@ -9,7 +9,7 @@ using RimettimiInSesto.Api.Models;
 namespace RimettimiInSesto.Api.Controllers;
 
 // Vista di business del titolare: soldi e ore, **nessun accesso clinico** e nessun nome di
-// paziente (principio guida di CLAUDE.md). Qui non passa nulla che venga dalla cartella.
+// paziente. Qui non passa nulla che venga dalla cartella.
 [ApiController]
 [Route("api/admin")]
 [Authorize(Roles = "Admin")]
@@ -22,7 +22,7 @@ public class AdminController(ApplicationDbContext db) : ControllerBase
     private static DateOnly LunediDellaSettimanaDi(DateOnly data) =>
         data.AddDays(-(data.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)data.DayOfWeek - 1));
 
-    // Un solo endpoint per le tre granularità del grafico Andamento (vedi CLAUDE.md): la
+    // Un solo endpoint per le tre granularità del grafico Andamento: la
     // domanda "come va" cambia scala — settimana, mese, anno — ma è sempre la stessa domanda,
     // e tre endpoint quasi identici sarebbero tre posti in cui la stessa logica di percorso
     // (SSN/Privato) potrebbe divergere nel tempo.
@@ -110,8 +110,8 @@ public class AdminController(ApplicationDbContext db) : ControllerBase
             // Il valore di una singola seduta dentro un pacchetto è una media (prezzo totale
             // diviso sedute): il pacchetto si vende intero, non seduta per seduta.
             TipoPacchetto.Privato => seduteTotali is > 0 ? (prezzoPacchetto ?? 0) / seduteTotali.Value : 0,
-            // Il ticket SSN è dovuto una volta per ciclo, non a seduta (CLAUDE.md, Cassa):
-            // se il ciclo è già aperto, le sue sedute future non generano nuovo incasso atteso.
+            // Il ticket SSN è dovuto una volta per ciclo, non a seduta: se il ciclo è già
+            // aperto, le sue sedute future non generano nuovo incasso atteso.
             TipoPacchetto.Ssn => 0,
             // Prenotazione privata senza pacchetto (es. telefonica, pagata seduta per
             // seduta): il prezzo di listino è la stima più onesta disponibile.

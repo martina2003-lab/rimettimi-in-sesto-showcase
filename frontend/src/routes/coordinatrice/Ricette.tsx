@@ -10,7 +10,7 @@ const soloData = (iso: string) => FORMATO_DATA.format(new Date(`${iso}T00:00:00`
 
 export default function RicetteSsn() {
   // Arriva dal collegamento "Vedi ricetta" nella coda Richieste: dice quale ricetta
-  // evidenziare, dato che la coda qui può averne più d'una (CLAUDE.md, 15 settembre 2026).
+  // evidenziare, dato che la coda qui può averne più d'una.
   const [searchParams] = useSearchParams()
   const evidenziata = Number(searchParams.get('ricettaId')) || null
 

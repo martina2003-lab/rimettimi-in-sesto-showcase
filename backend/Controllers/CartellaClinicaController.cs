@@ -9,8 +9,8 @@ using RimettimiInSesto.Api.Services;
 
 namespace RimettimiInSesto.Api.Controllers;
 
-// Solo il fisioterapista accede alla cartella clinica (principio guida di CLAUDE.md):
-// la Coordinatrice non la vede mai, nemmeno in parte. Ogni azione qui passa da
+// Solo il fisioterapista accede alla cartella clinica: la Coordinatrice non la vede
+// mai, nemmeno in parte. Ogni azione qui passa da
 // ClinicalAccessService PRIMA di leggere o scrivere — mai un controllo "a vista" in UI,
 // e ogni accesso concesso finisce nell'audit log, non è opzionale.
 [ApiController]

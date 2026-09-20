@@ -34,8 +34,7 @@ public class AppuntamentiController(
 
     // L'agenda del fisioterapista che chiama: solo i suoi, mai quelli dei colleghi. Una
     // settimana alla volta, non tutto lo storico: senza un intervallo la lista cresce per
-    // sempre e non c'è modo di guardare avanti o indietro (CLAUDE.md, "Agenda a settimane
-    // navigabili").
+    // sempre e non c'è modo di guardare avanti o indietro.
     [HttpGet("agenda")]
     [Authorize(Roles = "Fisioterapista")]
     public async Task<ActionResult<List<AppuntamentoResponse>>> Agenda([FromQuery] DateOnly da, [FromQuery] DateOnly a)

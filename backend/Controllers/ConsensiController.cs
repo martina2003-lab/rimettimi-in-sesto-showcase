@@ -58,7 +58,7 @@ public class ConsensiController(ApplicationDbContext db) : ControllerBase
         }
 
         // Chi firma: sé stesso, oppure il genitore/tutore che agisce per un minore. È il
-        // dato che i moduli cartacei richiedono espressamente (scheda-cartacea.md).
+        // dato che i moduli cartacei reali dello studio richiedono espressamente.
         var firmatario = collegamento.Titolo == TitoloRelazione.SeStesso
             ? $"{collegamento.Utente.Nome} {collegamento.Utente.Cognome}"
             : $"{collegamento.Utente.Nome} {collegamento.Utente.Cognome} ({collegamento.Titolo.ToString().ToLowerInvariant()})";

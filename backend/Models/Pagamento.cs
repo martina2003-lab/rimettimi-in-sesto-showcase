@@ -1,7 +1,7 @@
 namespace RimettimiInSesto.Api.Models;
 
 // Due tipi con regole proprie — mai collassati in un unico concetto generico
-// di "pacchetto" (principio guida di CLAUDE.md).
+// di "pacchetto".
 public class AcquistoPacchetto
 {
     public int Id { get; set; }

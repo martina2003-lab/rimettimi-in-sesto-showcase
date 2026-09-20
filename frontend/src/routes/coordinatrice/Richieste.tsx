@@ -17,8 +17,8 @@ function perInput(data: Date) {
 export default function RichiesteCoordinatrice() {
   const [richieste, setRichieste] = useState<Appuntamento[] | null>(null)
   // Non per decidere qui: solo per sapere se la ricetta di una richiesta SSN è ancora in
-  // coda di validazione, e mostrare il collegamento solo quando ha senso (CLAUDE.md,
-  // 15 settembre 2026) — se è già validata, la coda Ricette non la contiene più.
+  // coda di validazione, e mostrare il collegamento solo quando ha senso — se è già
+  // validata, la coda Ricette non la contiene più.
   const [ricetteInCoda, setRicetteInCoda] = useState<Ricetta[]>([])
   const [errore, setErrore] = useState<string | null>(null)
   const [inCorso, setInCorso] = useState(false)
@@ -113,7 +113,7 @@ export default function RichiesteCoordinatrice() {
 
               {/* Le due code (Richieste e Ricette SSN) mostrano lo stesso paziente da due
                   punti di vista diversi: qui si dice solo se la ricetta è già in coda o manca
-                  ancora, senza duplicare la validazione (CLAUDE.md, 7 e 15 settembre 2026). */}
+                  ancora, senza duplicare la validazione. */}
               {richiesta.percorso === 'Ssn' && richiesta.ricettaId === null && (
                 <p
                   className="mt-3 rounded-lg px-3 py-2 text-[0.86rem]"

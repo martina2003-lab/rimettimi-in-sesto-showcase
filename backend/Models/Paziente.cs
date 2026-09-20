@@ -1,7 +1,7 @@
 namespace RimettimiInSesto.Api.Models;
 
-// La scheda paziente non presuppone un account (principio guida di CLAUDE.md):
-// UtenteId è nullable perché la Coordinatrice crea schede per chi prenota al telefono
+// La scheda paziente non presuppone un account: UtenteId è nullable perché la
+// Coordinatrice crea schede per chi prenota al telefono
 // prima che il paziente si registri. Il collegamento avviene poi per codice fiscale.
 public class Paziente
 {

@@ -13,8 +13,8 @@ namespace RimettimiInSesto.Api.Controllers;
 public class AuthController(UserManager<ApplicationUser> userManager, JwtTokenService jwtTokenService)
     : ControllerBase
 {
-    // Login demo: nessun account reale, nessun invio email — solo le 4 credenziali di
-    // mockup/login.html (più i fisioterapisti aggiuntivi del seed). Vedi ARCHITETTURA.md, note demo.
+    // Login demo: nessun account reale, nessun invio email — solo le 4 credenziali dei
+    // ruoli (più i fisioterapisti aggiuntivi del seed). Vedi ARCHITETTURA.md, note demo.
     [HttpPost("login")]
     [AllowAnonymous]
     public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)

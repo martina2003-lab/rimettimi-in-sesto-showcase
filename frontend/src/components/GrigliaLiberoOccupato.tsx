@@ -55,8 +55,8 @@ interface Props {
 /**
  * Vista libero/occupato di una settimana, tutti i fisioterapisti insieme: dice quanti sono
  * liberi in ogni casella, non chi è occupato con chi. Serve a chi cerca un orario preciso
- * senza preferenze di terapista (CLAUDE.md, 15 settembre 2026) — usata sia dal Calendario
- * della Coordinatrice ("Tutti") sia da Nuovo Appuntamento ("Cerca per orario").
+ * senza preferenze di terapista — usata sia dal Calendario della Coordinatrice ("Tutti")
+ * sia da Nuovo Appuntamento ("Cerca per orario").
  */
 export default function GrigliaLiberoOccupato({ durataMinuti, onScegli }: Props) {
   const [lunedi, setLunedi] = useState(lunediIniziale)

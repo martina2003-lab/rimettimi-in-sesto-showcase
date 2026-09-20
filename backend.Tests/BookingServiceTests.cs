@@ -134,9 +134,9 @@ public class BookingServiceTests
     [Fact]
     public async Task Chiedere_uno_spostamento_non_fa_perdere_lo_slot_gia_confermato()
     {
-        // Il comportamento distintivo deciso in mockup/paziente.html: finché la segreteria
-        // non approva, il paziente tiene il suo orario. Facile da rompere "semplificando"
-        // con un DataOra sovrascritto, per questo è coperto da un test.
+        // Il comportamento distintivo del progetto: finché la segreteria non approva, il
+        // paziente tiene il suo orario. Facile da rompere "semplificando" con un DataOra
+        // sovrascritto, per questo è coperto da un test.
         var (db, marco, _, fisio, utenteMarco) = await ScenarioBase();
         var service = NuovoService(db);
         var originale = ProssimoLunedi();

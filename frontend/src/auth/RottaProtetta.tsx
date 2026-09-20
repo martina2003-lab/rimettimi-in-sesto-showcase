@@ -3,8 +3,8 @@ import { HOME_PER_RUOLO, useAuth } from './AuthContext'
 import type { Ruolo } from '../api/types'
 
 // Questo è un filtro di comodità per la navigazione, NON il controllo di sicurezza:
-// quello vive lato server su ogni endpoint (principio guida di CLAUDE.md). Qui serve
-// solo a non mostrare a un ruolo schermate che il backend gli rifiuterebbe comunque.
+// quello vive lato server su ogni endpoint. Qui serve solo a non mostrare a un ruolo
+// schermate che il backend gli rifiuterebbe comunque.
 export default function RottaProtetta({ ruoloRichiesto }: { ruoloRichiesto?: Ruolo }) {
   const { utente, caricamentoIniziale, erroreConnessione, riprova } = useAuth()
 

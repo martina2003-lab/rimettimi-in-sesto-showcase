@@ -98,7 +98,7 @@ public class FisioterapistiController(ApplicationDbContext db) : ControllerBase
 
     // I pazienti a cui ho accesso, e perché. Non esiste una lista "i miei pazienti" da
     // qualche parte: si ricava dagli appuntamenti, che è l'unica cosa che autorizza
-    // l'accesso clinico (principio guida di CLAUDE.md).
+    // l'accesso clinico.
     [HttpGet("miei-pazienti")]
     [Authorize(Roles = "Fisioterapista")]
     public async Task<ActionResult<List<PazienteDelFisioterapistaDto>>> MieiPazienti()

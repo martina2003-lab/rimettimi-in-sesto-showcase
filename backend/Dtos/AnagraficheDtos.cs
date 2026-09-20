@@ -18,7 +18,7 @@ public record RicettaAttivaDto(
     DateOnly? FinestraCompletamento, int? CicloId, int? SeduteResidue);
 
 // I due percorsi restano separati anche qui, non appiattiti in una lista unica di
-// "cose da cui scalare una seduta": hanno regole diverse (principio guida di CLAUDE.md).
+// "cose da cui scalare una seduta": hanno regole diverse.
 public record PercorsiAttiviResponse(
     List<PacchettoAttivoDto> PacchettiPrivati,
     List<RicettaAttivaDto> RicetteSsn);

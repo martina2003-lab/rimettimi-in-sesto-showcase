@@ -9,7 +9,7 @@ public class PagamentoValidationException(string messaggio) : Exception(messaggi
 
 // Stripe in modalità test soltanto (ARCHITETTURA.md, "Note per il deploy demo"): "Online"
 // qui è sempre un esito positivo simulato, mai una vera chiamata a Stripe — coerente con
-// il checkout inerte già mostrato in mockup/paziente.html ("Simulazione" ben visibile).
+// il checkout inerte del frontend, dove il banner "Simulazione" resta ben visibile.
 public class PagamentoService(ApplicationDbContext db)
 {
     public async Task<AcquistoPacchetto> AcquistaPacchettoAsync(int pazienteId, AcquistaPacchettoRequest request)

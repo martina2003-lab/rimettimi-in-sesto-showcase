@@ -36,8 +36,8 @@ builder.Services
     .AddIdentityCore<ApplicationUser>(options =>
     {
         // Requisiti minimi per un demo: niente conferma email, niente lockout aggressivo.
-        // Password semplici ("demo1234") perché sono già mostrate in chiaro in mockup/login.html —
-        // coerente solo perché questa è la versione demo, non una policy da portare in produzione.
+        // Password semplici ("demo1234"): sono le stesse credenziali demo mostrate in chiaro
+        // nella pagina di login — coerente solo per la versione demo, non una policy da produzione.
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireUppercase = false;
         options.Password.RequiredLength = 8;

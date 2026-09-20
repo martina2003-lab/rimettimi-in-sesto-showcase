@@ -7,7 +7,7 @@ namespace RimettimiInSesto.Api.Services;
 public record ClinicalAccessResult(bool Autorizzato, int? AppuntamentoGiustificativoId);
 
 // Il cuore del principio guida "l'accesso clinico deriva dall'appuntamento, non da un
-// legame statico" (CLAUDE.md). Nessuna FK Paziente.fisioterapistaDiRiferimento: un
+// legame statico". Nessuna FK Paziente.fisioterapistaDiRiferimento: un
 // fisioterapista accede alla cartella di un paziente se ha, o ha avuto, un appuntamento
 // assegnato con lui — qualunque stato, perché anche un appuntamento annullato o passato
 // giustifica la consultazione (es. per capire perché fu annullato, o note di sostituzione).

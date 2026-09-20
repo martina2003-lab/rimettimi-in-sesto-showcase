@@ -1,7 +1,7 @@
 namespace RimettimiInSesto.Api.Models;
 
 // Organizzata per CICLO di trattamento, non per singola seduta — struttura ricavata
-// dai moduli cartacei reali (scheda-cartacea.md). Le singole sedute vivono in NotaSeduta,
+// dai moduli cartacei reali dello studio. Le singole sedute vivono in NotaSeduta,
 // agganciate all'Appuntamento, non qui.
 public class CartellaClinica
 {
@@ -80,9 +80,9 @@ public class Consenso
     public string Firmatario { get; set; } = string.Empty;
 }
 
-// Audit log degli accessi clinici — NON opzionale (principio guida di CLAUDE.md):
-// unico meccanismo di controllo sui sostituti, dato che l'autorizzazione è derivata
-// dall'appuntamento e mai concessa esplicitamente caso per caso.
+// Audit log degli accessi clinici — NON opzionale: unico meccanismo di controllo sui
+// sostituti, dato che l'autorizzazione è derivata dall'appuntamento e mai concessa
+// esplicitamente caso per caso.
 public class AuditLogAccessoClinico
 {
     public int Id { get; set; }

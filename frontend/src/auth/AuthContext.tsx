@@ -99,8 +99,7 @@ export function useAuth() {
   return contesto
 }
 
-// Dove atterra ciascun ruolo dopo il login — l'equivalente dello smistamento che
-// mockup/login.html faceva mandando a quattro file HTML diversi.
+// Dove atterra ciascun ruolo dopo il login: quattro aree separate, una per ruolo.
 export const HOME_PER_RUOLO: Record<Ruolo, string> = {
   Paziente: '/paziente',
   Fisioterapista: '/fisioterapista',

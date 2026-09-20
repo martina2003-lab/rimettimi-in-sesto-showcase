@@ -40,7 +40,7 @@ public class PazientePagamentiController(ApplicationDbContext db, PagamentoServi
         return Ok(new PagamentiPazienteResponse(daSaldare, storico));
     }
 
-    // Il pacchetto privato — mai collassato con il ciclo SSN (principio guida di CLAUDE.md).
+    // Il pacchetto privato — mai collassato con il ciclo SSN.
     [HttpPost("pacchetti")]
     public async Task<ActionResult> AcquistaPacchetto(int pazienteId, AcquistaPacchettoRequest request)
     {

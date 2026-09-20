@@ -30,9 +30,9 @@ public class Appuntamento
     public string? MotivoAnnullamento { get; set; }
     public bool? NotificaGiaDataAltrove { get; set; }
 
-    // Richiesta di spostamento in attesa di approvazione. Il punto non ovvio, già deciso
-    // in mockup/paziente.html: chiedere una modifica NON fa perdere lo slot confermato —
-    // l'appuntamento resta dov'è finché la segreteria non approva. Per questo la nuova
+    // Richiesta di spostamento in attesa di approvazione. Il punto non ovvio: chiedere
+    // una modifica NON fa perdere lo slot confermato — l'appuntamento resta dov'è finché
+    // la segreteria non approva. Per questo la nuova
     // data vive in un campo a parte invece di sovrascrivere DataOra: finché la richiesta
     // è aperta risultano occupati entrambi gli orari, il vecchio e il nuovo.
     public DateTime? ModificaRichiestaDataOra { get; set; }
